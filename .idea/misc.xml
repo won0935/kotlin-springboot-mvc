@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/04. rest-api/01. get/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/04. rest-api/02. post/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/04. rest-api/03. put/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/04. rest-api/04. delete/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/04. rest-api/04. response/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/05. validation/01. validation/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/05. validation/02. custom validation/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/06. error-handler/01. exception advice/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/06. error-handler/02. exception handler/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/07. test/mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/08. todo-list/todo" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+</project>

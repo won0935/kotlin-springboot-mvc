@@ -60,7 +60,7 @@ class TodoRepositoryImpl(
     }
 
     override fun findOne(index: Int): Todo? {
-        return todoDataBase.todoList.first { it.index == index }
+        return todoDataBase.todoList.firstOrNull{ it.index == index }
     }
 
     override fun findAll(): MutableList<Todo> {

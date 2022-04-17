@@ -15,14 +15,15 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/api/todo")
 class TodoApiController(
-        val todoService: TodoService
+    val todoService: TodoService
 ) {
     // R
     @ApiOperation(value = "일정확인", notes = "일정 확인 GET API")
     @GetMapping(path = [""])
     fun read(
-            @ApiParam(value = "index")
-            @RequestParam(required = false) index:Int?): ResponseEntity<Any?> {
+        @ApiParam(value = "index")
+        @RequestParam(required = false) index: Int?
+    ): ResponseEntity<Any?> {
 
         return index?.let {
 
@@ -31,12 +32,12 @@ class TodoApiController(
 
             return ResponseEntity.ok(it)
         }
-        ?: kotlin.run {
-            return ResponseEntity
+            ?: kotlin.run {
+                return ResponseEntity
                     .status(HttpStatus.MOVED_PERMANENTLY)
                     .header(HttpHeaders.LOCATION, "/api/todo/all")
                     .build()
-        }
+            }
 
     }
 
@@ -54,15 +55,24 @@ class TodoApiController(
 
     // U TODO create = 201 내리도록, update = 200 내리도록 변경
     @PutMapping(path = [""]) // create = 201 , update = 200
-    fun update(@Valid @RequestBody todoDto: TodoDto): TodoDto? {
-        return todoService.create(todoDto)
+    fun update(@Valid @RequestBody todoDto: TodoDto): ResponseEntity<TodoDto> {
+
+        todoDto.index?.let {
+            todoService.read(it)
+        }?.let {
+            return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(todoService.create(it))
+        } ?: kotlin.run {
+            return ResponseEntity.ok(todoService.create(todoDto)!!)
+        }
     }
 
 
     // D
     @DeleteMapping(path = ["/{index}"])
-    fun delete(@PathVariable(name = "index") _index:Int): ResponseEntity<Any> {
-        if(!todoService.delete(_index)){
+    fun delete(@PathVariable(name = "index") _index: Int): ResponseEntity<Any> {
+        if (!todoService.delete(_index)) {
             return ResponseEntity.status(500).build()
         }
 
